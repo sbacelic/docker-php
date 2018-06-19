@@ -3,7 +3,7 @@ FROM debian:stretch
 # Base packages
 # -----------------------------------------------------------------------------
 RUN apt-get update && \
-    apt-get install -y apt-transport-https ca-certificates wget curl git make
+    apt-get install -y apt-transport-https ca-certificates wget curl git make libxml2-utils
 
 # Adding packages.sury.org repository for PHP 7.1
 RUN wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg && \
