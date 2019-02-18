@@ -6,7 +6,7 @@ RUN apt-get update && \
     apt-get install -y apt-transport-https ca-certificates wget curl git make libxml2-utils gnupg2
 
 # Adding packages.sury.org repository for PHP 7.1
-RUN curl https://packages.sury.org/php/apt.gpg | gpg --dearmor > /usr/share/keyring/php.gpg && \
+RUN curl https://packages.sury.org/php/apt.gpg | gpg --dearmor > /usr/share/keyrings/php.gpg && \
     echo "deb [signed-by=/usr/share/keyrings/php.gpg] https://packages.sury.org/php/ stretch main" > /etc/apt/sources.list.d/php.list
 
 # Add node 10.x repo
