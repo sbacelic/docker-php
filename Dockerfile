@@ -3,11 +3,15 @@ FROM debian:stretch
 # Base packages
 # -----------------------------------------------------------------------------
 RUN apt-get update && \
-    apt-get install -y apt-transport-https ca-certificates wget curl git make libxml2-utils
+    apt-get install -y apt-transport-https ca-certificates wget curl git make libxml2-utils gnupg2
 
 # Adding packages.sury.org repository for PHP 7.1
-RUN wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg && \
-    echo "deb https://packages.sury.org/php/ stretch main" > /etc/apt/sources.list.d/php.list
+RUN curl https://packages.sury.org/php/apt.gpg | gpg --dearmor > /usr/share/keyring/php.gpg && \
+    echo "deb [signed-by=/usr/share/keyrings/php.gpg] https://packages.sury.org/php/ stretch main" > /etc/apt/sources.list.d/php.list
+
+# Add node 10.x repo
+RUN curl https://deb.nodesource.com/gpgkey/nodesource.gpg.key | gpg --dearmor > /usr/share/keyrings/node.gpg && \
+    echo "deb [signed-by=/usr/share/keyrings/node.gpg] https://deb.nodesource.com/node_10.x stretch main" > /etc/apt/sources.list.d/nodesource.list
 
 # PHP packages
 # -----------------------------------------------------------------------------
@@ -30,8 +34,10 @@ RUN apt-get update && \
     php-redis \
     php-mongodb \
     php-xdebug \
-    unzip
-
+    unzip \
+    nodejs \
+    build-essential
+    
 # Clear archives in apt cache folder
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
