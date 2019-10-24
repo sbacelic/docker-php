@@ -5,7 +5,7 @@ FROM debian:stretch
 RUN apt-get update && \
     apt-get install -y apt-transport-https ca-certificates wget curl git make libxml2-utils gnupg2
 
-# Adding packages.sury.org repository for PHP 7.1
+# Adding packages.sury.org repository for PHP 7.3
 RUN curl https://packages.sury.org/php/apt.gpg | gpg --dearmor > /usr/share/keyrings/php.gpg && \
     echo "deb [signed-by=/usr/share/keyrings/php.gpg] https://packages.sury.org/php/ stretch main" > /etc/apt/sources.list.d/php.list
 
@@ -17,18 +17,17 @@ RUN curl https://deb.nodesource.com/gpgkey/nodesource.gpg.key | gpg --dearmor > 
 # -----------------------------------------------------------------------------
 RUN apt-get update && \
     apt-get install -y \
-    php7.1-cli \
-    php7.1-opcache \
-    php7.1-bcmath \
-    php7.1-mcrypt \
-    php7.1-zip \
-    php7.1-dom \
-    php7.1-intl \
-    php7.1-mbstring \
-    php7.1-xml \
-    php7.1-mysql \
-    php7.1-sqlite3 \
-    php7.1-curl \
+    php7.3-cli \
+    php7.3-opcache \
+    php7.3-bcmath \
+    php7.3-zip \
+    php7.3-dom \
+    php7.3-intl \
+    php7.3-mbstring \
+    php7.3-xml \
+    php7.3-mysql \
+    php7.3-sqlite3 \
+    php7.3-curl \
     php-apcu \
     php-apcu-bc \ 
     php-redis \
